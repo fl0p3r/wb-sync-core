@@ -24,9 +24,8 @@ export const syncAlStyle = async () => {
       totalPages = pagination.totalPages;
 
       const bulkOps = elements.map(item => {
-        // Парсим остаток ">50" -> 50, "0" -> 0
-        const cleanStock = typeof item.quantity === 'string' 
-          ? parseInt(item.quantity.replace(/[^\d]/g, '')) || 0 
+        const cleanStock = typeof item.quantity === 'string'
+          ? parseInt(item.quantity.replace(/[^\d]/g, '')) || 0
           : item.quantity;
 
         return {
@@ -49,7 +48,6 @@ export const syncAlStyle = async () => {
       if (bulkOps.length > 0) await Product.bulkWrite(bulkOps);
 
       currentPage++;
-      // Лимит API: 1 запрос в 5 сек. Ставим 5.1 для страховки.
       await sleep(5100); 
 
     } catch (error) {

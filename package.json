@@ -1,13 +1,13 @@
 {
   "name": "project-root",
   "version": "1.0.0",
-  "description": "",
+  "description": "Синхронизация товаров между Al-Style, Google Sheets, MongoDB и маркетплейсами",
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "fl0p3r",
   "license": "ISC",
   "type": "module",
   "dependencies": {

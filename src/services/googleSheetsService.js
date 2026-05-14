@@ -3,7 +3,7 @@ import { GoogleSpreadsheet } from 'google-spreadsheet';
 import { readFileSync } from 'fs';
 import path from 'path';
 import { Product } from '../models/Product.js';
-import { notify } from '../utils/logger.js'; // Вернул логгер
+import { notify } from '../utils/logger.js';
 import dotenv from 'dotenv';
 dotenv.config();
 

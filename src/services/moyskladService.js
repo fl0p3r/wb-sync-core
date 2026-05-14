@@ -5,7 +5,6 @@ dotenv.config();
 const auth = Buffer.from(`${process.env.MOYSKLAD_LOGIN}:${process.env.MOYSKLAD_PASS}`).toString('base64');
 
 const msApi = axios.create({
-  // Исправленный URL
   baseURL: 'https://api.moysklad.ru/api/remap/1.2', 
   headers: {
     'Authorization': `Basic ${auth}`,
@@ -28,7 +27,6 @@ export const testMS = async () => {
       console.log('Доступ есть, но товаров в МС нет. Создай один товар вручную для теста.');
     }
   } catch (error) {
-    // Выводим детальную ошибку
     console.error('Ошибка МойСклад:', error.response?.data || error.message);
   }
 };

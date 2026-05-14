@@ -4,16 +4,14 @@ import { updateSheetData, syncMarkupFromSheet } from './services/googleSheetsSer
 const start = async () => {
   await connectDB();
   
-  // 1. Выгружаем всё в таблицу
   await updateSheetData();
 
-  console.log('Сделано. Теперь иди в таблицу, измени "Наценку %" у первых 5 товаров.');
-  console.log('Жду 15 секунд и начинаю сохранение в базу...');
+  console.log('Данные выгружены в таблицу. Отредактируйте наценки — через 15 с система их применит.');
+  console.log('Ожидание 15 с...');
 
   setTimeout(async () => {
-    // 2. Читаем из таблицы и считаем цены
     await syncMarkupFromSheet();
-    console.log('Процесс завершен. Проверь базу (MongoDB Compass), поле price_final изменилось.');
+    console.log('Готово. Цены пересчитаны.');
     process.exit(0);
   }, 15000);
 };

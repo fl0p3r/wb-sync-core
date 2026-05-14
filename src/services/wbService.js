@@ -5,11 +5,9 @@ dotenv.config();
 export const testWB = async () => {
   const token = process.env.WB_TOKEN;
 
-  // Вариант 1: Токен как есть
-  // Вариант 2: С префиксом Bearer
   const configs = [
-    { name: 'Обычный токен', headers: { 'Authorization': token } },
-    { name: 'Bearer токен', headers: { 'Authorization': `Bearer ${token}` } }
+    { name: 'Без префикса', headers: { 'Authorization': token } },
+    { name: 'С префиксом Bearer', headers: { 'Authorization': `Bearer ${token}` } }
   ];
 
   for (const config of configs) {
@@ -19,14 +17,13 @@ export const testWB = async () => {
         headers: config.headers
       });
       console.log(`Успех (${config.name})! Склады:`, response.data.length);
-      return; // Если сработало, выходим
+      return;
     } catch (error) {
       console.log(`Ошибка (${config.name}): status ${error.response?.status}`);
       if (error.response?.data?.detail) console.log('Детали:', error.response.data.detail);
     }
   }
-  
-  console.log('--- ИТОГ ---');
-  console.log('Ни один вариант не подошел. Токен, который дал клиент — не "Стандартный токен API".');
-  console.log('Клиент должен зайти в: Настройки -> Доступ к API -> Создать новый ключ (выбрать "Стандартный").');
+
+  console.log('---');
+  console.log('Токен WB не прошёл проверку. Убедитесь, что используется "Стандартный токен API" (Настройки → Доступ к API).');
 };
